@@ -26,7 +26,7 @@ const Component = (props) => {
       </p>
       <a
         className="App-link"
-        href={props.link}
+        href={props.href}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -38,11 +38,13 @@ const Component = (props) => {
 
 
 function App() {
+   
+console.log(libraries.React);
   return (
     <div className="App">
       <header className="App-header">
-      <Component link={libraries.React.href} title={libraries.React.title} logo={libraries.React.logo} />
-      <Component link={libraries.Angular.href} title={libraries.Angular.title} logo={libraries.Angular.logo} />
+      <Component {...libraries.React} />
+      <Component {...libraries.Angular} />
       </header>
     </div>
   );
