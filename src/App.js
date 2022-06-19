@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
-const Clock = (props) => {
+const Clock = ({isVisible}) => {
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Clock = (props) => {
   return (
     <>
       <h1>L'Heure Actuel est :</h1>
-      {props.isVisible &&  <p>{`${date.toLocaleTimeString()}`}</p>}
+      {isVisible &&  <p>{`${date.toLocaleTimeString()}`}</p>}
     </>
   );
 };
@@ -34,7 +34,7 @@ function App() {
       <header className="App-header">
         {isVisible && <button onClick={toggleVisible}>Hide</button>}
         {!isVisible && <button onClick={toggleVisible}>Show</button>}
-          <Clock isVisible={isVisible} />
+          <Clock isVisible />
       </header>
     </div>
   );
