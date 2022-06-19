@@ -1,42 +1,36 @@
-import { useEffect, useState } from 'react';
 import './App.css';
 
-const Clock = ({isVisible}) => {
-  const [date, setDate] = useState(new Date());
+const lib = [
+  {
+    React: {
+      href: 'https://reactjs.org',
+      name: 'React',
+    },
+  },
+];
 
-  useEffect(() => {
-    let time = setInterval(() => {
-      setDate(new Date());
-    }, 1000);
-
-    return () => {
-      setInterval(time);
-    };
-  });
-
+const Component = (props) => {
   return (
-    <>
-      <h1>L'Heure Actuel est :</h1>
-      {isVisible &&  <p>{`${date.toLocaleTimeString()}`}</p>}
-    </>
+    <a
+      className="App-link"
+      href={props.href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Learn {props.name}
+    </a>
   );
 };
 
-
 function App() {
-   const[isVisible,setIsVisible]=useState(true)
-   const toggleVisible=()=>{
-     setIsVisible(!isVisible)
-   }
-   console.log(isVisible);
+  console.log(lib[0].React.name);
   return (
     <div className="App">
       <header className="App-header">
-        {isVisible && <button onClick={toggleVisible}>Hide</button>}
-        {!isVisible && <button onClick={toggleVisible}>Show</button>}
-          <Clock isVisible />
+        <Component  name={lib[0].React.name} href={lib[0].React.href} />
       </header>
     </div>
   );
 }
+
 export default App;
