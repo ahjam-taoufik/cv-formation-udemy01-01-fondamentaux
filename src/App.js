@@ -1,25 +1,36 @@
-import React from 'react';
 import './App.css';
 
 
-
 const Button=(props)=>{
-   const {colorButton,children, ...other}=props
-   const clasName=colorButton==='secondary' ? 'secondary' : 'primary'
   return (
-    <button className={clasName} {...other} >{children}</button>
+    <button style={{color:props.colorText, background:props.colorback}} >{props.children}</button>
   )
 }
+
+const ListButton=(props)=>{
+    const {data}=props
+    console.log(data);
+   
+  return (
+      <>
+         {data.map((d,index)=>{
+          return  <Button key={index} colorText={d.text} colorback={d.back} >click me</Button>
+         })}
+      
+      </>
+  )
+  
+ 
+
+}
+
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Button  onClick={()=>console.log('I am first button')} >I am first button</Button>
-        <Button colorButton='secondary'  onClick={()=>console.log('salam')} >Click me</Button>
-        <Button >Click me</Button>
-       
+         <ListButton  data={[{text:'red',back:'black'},{text:'pink',back:'white'},{text:'pink',back:'white'}]}   />
       </header>
     </div>
   );
