@@ -1,32 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 
-
-
 function App() {
-  const [name,setName]=useState(null)
-  const [isVisible,setVisible]=useState(null)
+  const RefInput=useRef()
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([]);
 
-  const HandleChange=(e)=>{
-      setName(e.target.value)
+
+  const HandleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const HandleSubmit=(e)=>{
+    e.preventDefault();
+    if(value) {
+      setItems([...items,value]);
+    }
+     setValue(null)
+     RefInput.current.value =null
   }
-
-
-  useEffect(() => {
-      setVisible(!!name)
-      console.log('name : ',!!name);
-  
-  }, [name])
-  
 
   return (
     <div className="App">
       <header className="App-header">
-            {!isVisible && <p>enter your text </p>}
-           <input onChange={HandleChange}></input>
-
-            <h1>{name && `Learn ${name}`}</h1> 
-          
+        <form onSubmit={HandleSubmit}>
+        <input ref={RefInput} onChange={HandleChange}></input>
+          <button>Add Todo </button>
+        </form>
       </header>
     </div>
   );
