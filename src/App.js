@@ -1,36 +1,32 @@
+import logo from './logo.svg';
 import './App.css';
 
 
-const Button=(props)=>{
+const ReactHello = (props) => {
   return (
-    <button style={{color:props.colorText, background:props.colorback}} >{props.children}</button>
-  )
-}
-
-const ListButton=(props)=>{
-    const {data}=props
-    console.log(data);
-   
-  return (
-      <>
-         {data.map((d,index)=>{
-          return  <Button key={index} colorText={d.text} colorback={d.back} >click me</Button>
-         })}
-      
-      </>
-  )
-  
- 
-
-}
-
+    <>
+      <img src={props.logo} className="App-logo" alt="logo" />
+      <p>
+        Edit <code>src/App.js</code> and save to reload.
+      </p>
+      <a
+        className="App-link"
+        href={props.link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn {props.title}
+      </a>
+    </>
+  );
+};
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-         <ListButton  data={[{text:'red',back:'black'},{text:'pink',back:'white'},{text:'pink',back:'white'}]}   />
+      <ReactHello link="https://reactjs.org" title='React' logo={logo}  />
       </header>
     </div>
   );
