@@ -1,34 +1,40 @@
-
 import { useEffect, useState } from 'react';
 import './App.css';
 
-const Clock=()=>{
-    const [date,setDate]=useState(new Date())
+const Clock = (props) => {
+  const [date, setDate] = useState(new Date());
 
-useEffect(() => {
-  let time=setInterval(()=>{
+  useEffect(() => {
+    let time = setInterval(() => {
       setDate(new Date());
-  },1000)
+    }, 1000);
 
-   return ()=>{
-    setInterval(time)
-   }
-  
-})
+    return () => {
+      setInterval(time);
+    };
+  });
 
-  return(
+  return (
     <>
-    <p> {`${date.toLocaleTimeString()}`}</p>
+      <h1>L'Heure Actuel est :</h1>
+      {props.isVisible &&  <p>{`${date.toLocaleTimeString()}`}</p>}
     </>
-  )
-}
+  );
+};
+
 
 function App() {
-
+   const[isVisible,setIsVisible]=useState(true)
+   const toggleVisible=()=>{
+     setIsVisible(!isVisible)
+   }
+   console.log(isVisible);
   return (
     <div className="App">
       <header className="App-header">
-          <Clock/>
+        {isVisible && <button onClick={toggleVisible}>Hide</button>}
+        {!isVisible && <button onClick={toggleVisible}>Show</button>}
+          <Clock isVisible={isVisible} />
       </header>
     </div>
   );
