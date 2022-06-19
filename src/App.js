@@ -31,6 +31,10 @@ function App() {
           <input ref={RefInput} onChange={HandleChange}></input>
           <button>Add Todo </button>
         </form>
+        <br />
+        <ul>
+          {items.map((item, index) =>(<li key={index}>{item}</li>))}
+        </ul>
       </header>
     </div>
   );
