@@ -1,16 +1,22 @@
 
 import './App.css';
 
+const Clock=()=>{
+  const date=new Date()
+  return(
+    <p> {`${date}`}</p>
+  )
+}
+
 
 
 function App() {
-  const date=new Date()
+
 
   return (
     <div className="App">
       <header className="App-header">
-         {`${date}`}
-    
+          <Clock/>
       </header>
     </div>
   );
