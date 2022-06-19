@@ -1,13 +1,11 @@
 import './App.css';
 
-const lib = [
-  {
-    React: {
-      href: 'https://reactjs.org',
-      name: 'React',
-    },
+const lib = {
+  React: {
+    href: 'https://reactjs.org',
+    name: 'React',
   },
-];
+};
 
 const Component = (props) => {
   return (
@@ -23,11 +21,11 @@ const Component = (props) => {
 };
 
 function App() {
-  console.log(lib[0].React.name);
+ 
   return (
     <div className="App">
       <header className="App-header">
-        <Component  name={lib[0].React.name} href={lib[0].React.href} />
+        <Component name={lib.React.name} href={lib.React.href} />
       </header>
     </div>
   );
