@@ -2,8 +2,8 @@ import { useState } from 'react';
 import './App.css';
 
 const libs = [
-  {name:'React',href: 'https://reactjs.org'},
-  {name:'Angular',href: 'https://angular.io'}
+  { name: 'React', href: 'https://reactjs.org' },
+  { name: 'Angular', href: 'https://angular.io' },
 ];
 
 const Component = (props) => {
@@ -19,36 +19,43 @@ const Component = (props) => {
   );
 };
 
+const Iterator = (props) => {
+  const list = props.values.map((val) => {
+    return <Component key={val.name} name={val.name} href={val.href} />;
+  });
+  return list;
+};
+
+const Form = (props) => {
+  return (
+    <>
+      <form onSubmit={props.HandleSubmit}>
+        <input placeholder="add name" name="name" onChange={props.HandleChange} />
+        <input placeholder="add link" name="href" onChange={props.HandleChange} />
+        <button>submit</button>
+      </form>
+    </>
+  );
+};
+
 function App() {
-  const [values,setValues]=useState(libs)
-  const [value,setValue]=useState(null)
-  const HandleChange=(e)=>{
-      setValue({...value,[e.target.name]:e.target.value})
-  }
-  const HandleSubmit=(e)=>{
-       e.preventDefault()
-        setValues([...values,value])
-  }
-   const list=values.map((val)=>{return<Component key={val.name} name={val.name} href={val.href} />})
- 
+  const [values, setValues] = useState(libs);
+  const [value, setValue] = useState(null);
+  const HandleChange = (e) => {
+    setValue({ ...value, [e.target.name]: e.target.value });
+  };
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+    setValues([...values, value]);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-          {list}
-          <form onSubmit={HandleSubmit} >
-          <input 
-          placeholder='add name'
-          name='name'
-          onChange={HandleChange}
-         />
+        <Iterator values={values} />
 
-         <input 
-          placeholder='add link'
-          name='href'
-          onChange={HandleChange}
-         />
-           <button >submit</button>
-          </form>
+        <Form HandleSubmit={HandleSubmit} HandleChange={HandleChange} />
+
       </header>
     </div>
   );
