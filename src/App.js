@@ -1,8 +1,9 @@
-import logo from './logo.svg';
+import logoReact from './logo.svg';
+import logoAngular from './angular.svg';
 import './App.css';
 
 
-const ReactHello = (props) => {
+const Component = (props) => {
   return (
     <>
       <img src={props.logo} className="App-logo" alt="logo" />
@@ -26,7 +27,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <ReactHello link="https://reactjs.org" title='React' logo={logo}  />
+      <Component link="https://reactjs.org" title='React' logo={logoReact}  />
+      <Component link="https://angular.io" title='Angular' logo={logoAngular}  />
       </header>
     </div>
   );
