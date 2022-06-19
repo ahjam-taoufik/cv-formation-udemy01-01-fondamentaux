@@ -30,9 +30,17 @@ const Form = (props) => {
   return (
     <>
       <form onSubmit={props.HandleSubmit}>
-        <input placeholder="add name" name="name" onChange={props.HandleChange} />
-        <input placeholder="add link" name="href" onChange={props.HandleChange} />
-        <button>submit</button>
+        <input
+          placeholder={` add ${props.placeholder[0]}`}
+          name={` add ${props.name[0]}`}
+          onChange={props.HandleChange}
+        />
+        <input
+          placeholder={` add ${props.placeholder[1]}`}
+          name={` add ${props.name[1]}`}
+          onChange={props.HandleChange}
+        />
+        <button>{props.button}</button>
       </form>
     </>
   );
@@ -54,8 +62,13 @@ function App() {
       <header className="App-header">
         <Iterator values={values} />
 
-        <Form HandleSubmit={HandleSubmit} HandleChange={HandleChange} />
-
+        <Form
+          HandleSubmit={HandleSubmit}
+          HandleChange={HandleChange}
+          placeholder={['name', 'link']}
+          name={['name', 'href']}
+          button={'add link'}
+        />
       </header>
     </div>
   );
