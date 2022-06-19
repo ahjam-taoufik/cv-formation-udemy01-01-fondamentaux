@@ -2,6 +2,24 @@
   text-align: center;
 }
 
+.primary{
+  background-color: #4CAF50;
+  color: white;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.secondary{
+  background-color: #2196F3;
+  color: white;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -14,7 +32,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #0652DD;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

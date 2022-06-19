@@ -1,22 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+
+
+
+const Button=(props)=>{
+   const {colorButton,children, ...other}=props
+   const clasName=colorButton==='secondary' ? 'secondary' : 'primary'
+  return (
+    <button className={clasName} {...other} >{children}</button>
+  )
+}
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Button  onClick={()=>console.log('I am first button')} >I am first button</Button>
+        <Button colorButton='secondary'  onClick={()=>console.log('salam')} >Click me</Button>
+        <Button >Click me</Button>
+       
       </header>
     </div>
   );
