@@ -32,12 +32,12 @@ const Form = (props) => {
       <form onSubmit={props.HandleSubmit}>
         <input
           placeholder={` add ${props.placeholder[0]}`}
-          name={` add ${props.name[0]}`}
+          name={`${props.name[0]}`}
           onChange={props.HandleChange}
         />
         <input
           placeholder={` add ${props.placeholder[1]}`}
-          name={` add ${props.name[1]}`}
+          name={`${props.name[1]}`}
           onChange={props.HandleChange}
         />
         <button>{props.button}</button>
