@@ -19,6 +19,11 @@ const reducer=(state,action)=>{
           ...state,
            items:[...state.items, action.payload]
         }
+      case "removItem":
+        return {
+          ...state,
+           items:action.payload
+        }
       default:
          return state
     }
@@ -50,8 +55,9 @@ function App() {
     };
     
     const removeItem = (id) => {
-      // const itemsFilter= items.filter((item)=>item.id!== id)
+      const itemsFilter= state.items.filter((item)=>item.id!== id)
       // setItems(itemsFilter)
+      dispatch({type:"removItem",payload:itemsFilter})
   };
 
   return (
