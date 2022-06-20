@@ -1,41 +1,13 @@
-import { useContext, useEffect, useReducer, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import './App.css';
 import { Context } from './Context';
 
-const initState = {
-  value: null,
-  items: [],
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'onChangeInput':
-      return {
-        ...state,
-        value: action.payload,
-      };
-    case 'addTolist':
-      return {
-        ...state,
-        items: [...state.items, action.payload],
-      };
-    case 'removItem':
-      return {
-        ...state,
-        items: state.items.filter((item) => item.id !== action.payload),
-      };
-    default:
-      return state;
-  }
-};
 
 function App() {
 
-  const {test}=useContext(Context)
-  console.log(test);
+  const {state,dispatch}=useContext(Context)
+  console.log(state);
   const RefInput = useRef();
-  const [state, dispatch] = useReducer(reducer, initState);
-
   const HandleChange = (e) => {
     dispatch({ type: 'onChangeInput', payload: e.target.value });
   };
