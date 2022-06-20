@@ -1,22 +1,44 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import './App.css';
+
+const initState={
+  value:null
+}
+
+const reducer=(state=initState,action)=>{
+
+    switch (action.type) {
+      case "change":
+        return {
+          ...state,
+           value: action.payload
+        }
+      default:
+         return state
+    }
+}
+
+
 
 function App() {
   const RefInput = useRef();
-  const [value, setValue] = useState(null);
+  const [state, dispatch] = useReducer(reducer, initState)
+  // const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
 
   const HandleChange = (e) => {
-    setValue(e.target.value);
+    // setValue(e.target.value);
+       dispatch({type:'change',payload: e.target.value})
     
   };
 
   const HandleSubmit = (e) => {
     e.preventDefault();
-    if (value) {
-      setItems([...items, { id: new Date().getTime(), text: value }]);
+    if (state.value) {
+      setItems([...items, { id: new Date().getTime(), text: state.value }]);
     }
-    setValue(null);
+    // setValue(null);
+    dispatch({type:'change',payload: null})
     RefInput.current.value = null;
   };
 
