@@ -2,16 +2,12 @@ import { useContext, useRef } from 'react';
 import './App.css';
 import { Context } from './Context';
 
-
-function App() {
-
+const Form=()=>{
   const {state,dispatch}=useContext(Context)
-  console.log(state);
   const RefInput = useRef();
   const HandleChange = (e) => {
     dispatch({ type: 'onChangeInput', payload: e.target.value });
   };
-
   const HandleSubmit = (e) => {
     e.preventDefault();
     if (state.value) {
@@ -24,30 +20,46 @@ function App() {
     RefInput.current.value = null;
   };
 
+  return(
+    <form onSubmit={HandleSubmit}>
+    <input ref={RefInput} onChange={HandleChange}></input>
+    <button>Add Todo </button>
+  </form>
+
+  )
+}
+
+const Iterator=()=>{
+  const {state,dispatch}=useContext(Context)
   const removeItem = (id) => {
     dispatch({ type: 'removItem', payload: id });
   };
+  return(
+    <ul>
+    {state.items.map((item, index) => {
+      return (
+        <div key={index}>
+          <li style={{ display: 'inline', marginRight: '15px' }}>
+            {item.text}
+          </li>
+          <button onClick={() => removeItem(item.id)}>X</button>
+        </div>
+      );
+    })}
+  </ul>
+  )
+}
+
+
+
+function App() {
 
   return (
     <div className="App">
       <header className="App-header">
-        <form onSubmit={HandleSubmit}>
-          <input ref={RefInput} onChange={HandleChange}></input>
-          <button>Add Todo </button>
-        </form>
+         <Form/>
         <br />
-        <ul>
-          {state.items.map((item, index) => {
-            return (
-              <div key={index}>
-                <li style={{ display: 'inline', marginRight: '15px' }}>
-                  {item.text}
-                </li>
-                <button onClick={() => removeItem(item.id)}>X</button>
-              </div>
-            );
-          })}
-        </ul>
+         <Iterator/>
       </header>
     </div>
   );
