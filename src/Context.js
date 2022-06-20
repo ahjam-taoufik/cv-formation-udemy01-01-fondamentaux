@@ -25,10 +25,26 @@ const reducer = (state, action) => {
 const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initState);
   const [inputValue, setInputValue] = useState(null);
-  console.log('ok');
+
+  const removeItem = (id) => {
+    dispatch({ type: 'removItem', payload: id });
+  };
+
   const onChangeValue = (value) => {
     return setInputValue(value);
   };
+
+  const addItem=(e,RefInput)=>{
+    e.preventDefault();
+    if (inputValue) {
+        dispatch({
+          type: 'addTolist',
+          payload: { id: new Date().getTime(), text: inputValue },
+        });
+      }
+      onChangeValue(null);
+      RefInput.current.value = null;
+  }
 
 //   const values =useMemo(() => {
 //    return {
@@ -44,6 +60,8 @@ const Provider = ({ children }) => {
     dispatch,
     inputValue,
     onChangeValue,
+    removeItem,
+    addItem
    }
   
 
