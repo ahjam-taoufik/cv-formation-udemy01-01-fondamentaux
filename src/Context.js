@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useState } from 'react';
+import { createContext, useContext, useMemo, useReducer, useState } from 'react';
 
 export const Context = createContext();
 const initState = {
@@ -7,7 +7,6 @@ const initState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-   
     case 'addTolist':
       return {
         ...state,
@@ -26,13 +25,30 @@ const reducer = (state, action) => {
 const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initState);
   const [inputValue, setInputValue] = useState(null);
-
+  console.log('ok');
   const onChangeValue = (value) => {
     return setInputValue(value);
   };
 
+//   const values =useMemo(() => {
+//    return {
+//     state,
+//     dispatch,
+//     inputValue,
+//     onChangeValue,
+//    }
+//   }, [state,inputValue])
+
+  const values = {
+    state,
+    dispatch,
+    inputValue,
+    onChangeValue,
+   }
+  
+
   return (
-    <Context.Provider value={{ state, dispatch, inputValue,onChangeValue }}>
+    <Context.Provider value={values}>
       {children}
     </Context.Provider>
   );
