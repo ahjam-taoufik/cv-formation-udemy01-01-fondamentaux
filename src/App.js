@@ -3,21 +3,26 @@ import './App.css';
 import { Context } from './Context';
 
 const Form=()=>{
-  const {state,dispatch}=useContext(Context)
+  const {dispatch,onChangeValue,inputValue}=useContext(Context)
   const RefInput = useRef();
+
   const HandleChange = (e) => {
-    dispatch({ type: 'onChangeInput', payload: e.target.value });
+   
+    onChangeValue(e.target.value)
   };
+
   const HandleSubmit = (e) => {
     e.preventDefault();
-    if (state.value) {
+    if (inputValue) {
       dispatch({
         type: 'addTolist',
-        payload: { id: new Date().getTime(), text: state.value },
+      
+        payload: { id: new Date().getTime(), text: inputValue },
       });
     }
-    dispatch({ type: 'onChangeInput', payload: null });
+   
     RefInput.current.value = null;
+    onChangeValue(null)
   };
 
   return(
