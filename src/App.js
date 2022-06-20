@@ -1,5 +1,6 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useContext, useEffect, useReducer, useRef, useState } from 'react';
 import './App.css';
+import { Context } from './Context';
 
 const initState = {
   value: null,
@@ -21,17 +22,17 @@ const reducer = (state, action) => {
     case 'removItem':
       return {
         ...state,
-        // items: action.payload,
-        items:state.items.filter((item) => item.id !== action.payload)
-
+        items: state.items.filter((item) => item.id !== action.payload),
       };
     default:
       return state;
   }
 };
 
-
 function App() {
+
+  const {test}=useContext(Context)
+  console.log(test);
   const RefInput = useRef();
   const [state, dispatch] = useReducer(reducer, initState);
 
@@ -51,9 +52,7 @@ function App() {
     RefInput.current.value = null;
   };
 
-
   const removeItem = (id) => {
-    // const itemsFilter = state.items.filter((item) => item.id !== id);
     dispatch({ type: 'removItem', payload: id });
   };
 
